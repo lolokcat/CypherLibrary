@@ -419,6 +419,7 @@ function Library:Construct(name)
 		end;
 	}
 	local Main = lib.loadguiasset(9047859847, game.Players.LocalPlayer.PlayerGui)
+	Main.ResetOnSpawn = true
 	game.Players.LocalPlayer.PlayerGui.LibraryGui.MainFrame.TextLabel.Text = name.." // "..Library["Info"]["Version"]
 	
 	local UserInputService = game:GetService("UserInputService")
