@@ -428,7 +428,7 @@ function Library:Construct(name)
 		end;
 	}
 	local Main = lib.loadguiasset(9047859847, game.Players.LocalPlayer.PlayerGui)
-	local Replicated = lib.loadguiasset(9047859847, game.StarterGui)
+	Main.ResetOnSpawn = true
 	game.Players.LocalPlayer.PlayerGui.LibraryGui.MainFrame.TextLabel.Text = name.." // "..Library["Info"]["Version"]
 	
 	local UserInputService = game:GetService("UserInputService")
@@ -627,6 +627,10 @@ function Library:Construct(name)
                                     end
 				    bcallback(tog)
                                 end)
+						
+				game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
+					bcallback(false)
+				end)
                             end
     	                    default()
     	                    if type == "Button" then 
