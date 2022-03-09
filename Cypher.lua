@@ -543,7 +543,7 @@ function Library:Construct(name)
     	                           Textbox.TextLabel.Text = name 
     	                       end 
     	                    end
-    	                    local function createDropDown(bcallback, name, optionz)
+    	                    local function createDropDown(bcallback, name, optionz, updatefunc)
     	                        local DropButton = lib.loadguiasset(9048693088, Page) 
     	                        local DropFrame = lib.loadguiasset(9048698851, game.Players.LocalPlayer.PlayerGui.LibraryGui.MainFrame.Container)
     	                        
@@ -583,6 +583,23 @@ function Library:Construct(name)
     	                                bcallback(option) 
     	                           end)
     	                        end
+				spawn(function()
+					while wait() do
+						if updatefunc then 
+							 DropFrame.DropContainer:ClearAllChildren()
+							 for index,option in pairs(updatefunc) do 
+							   print(option)
+							   local ContainerButton = lib.loadguiasset(9048819229, DropFrame.DropContainer)
+
+							   ContainerButton.Text = option 
+
+							   ContainerButton.MouseButton1Down:Connect(function()
+								bcallback(option) 
+							   end)
+							end
+						end
+					end
+				end)
     	                    end
                             local function createToggle(bcallback, name)
                                 local Toggle = lib.loadguiasset(9048996144, Page)
