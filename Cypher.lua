@@ -593,12 +593,12 @@ function Library:Construct(name)
                                 
                                 Toggle.MouseButton1Down:Connect(function()
                                     tog = not tog 
-                                    bcallback(tog)
                                     if tog == true then 
                                         lib.tweenasset(Toggle.check_box, {ImageTransparency = 0}, TweenInfo.new(0.3))
                                     else
                                         lib.tweenasset(Toggle.check_box, {ImageTransparency = 1}, TweenInfo.new(0.3))
-                                    end 
+                                    end
+				    bcallback(tog)
                                 end)
                             end
     	                    default()
