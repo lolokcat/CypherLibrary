@@ -429,6 +429,9 @@ function Library:Construct(name)
 	}
 	local Main = lib.loadguiasset(9047859847, game.Players.LocalPlayer.PlayerGui)
 	Main.ResetOnSpawn = true
+	if not Library["Info"]["Version"] then 
+		Library["Info"]["Version"] = 1.00
+	end
 	game.Players.LocalPlayer.PlayerGui.LibraryGui.MainFrame.TextLabel.Text = name.." // "..Library["Info"]["Version"]
 	
 	local UserInputService = game:GetService("UserInputService")
