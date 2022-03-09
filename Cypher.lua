@@ -1,8 +1,4 @@
-local Library = {
-	["Settings"] = {["HideKeyBind"] = "z"},
-	["Info"] = {["Version"] = "1.00"}
-}
-
+local Library = {}
 local json = { _version = "0.1.2" }
 
 -------------------------------------------------------------------------------
@@ -429,10 +425,7 @@ function Library:Construct(name)
 	}
 	local Main = lib.loadguiasset(9047859847, game.Players.LocalPlayer.PlayerGui)
 	Main.ResetOnSpawn = true
-	if not Library["Info"]["Version"] then 
-		Library["Info"]["Version"] = 1.00
-	end
-	game.Players.LocalPlayer.PlayerGui.LibraryGui.MainFrame.TextLabel.Text = name.." // "..Library["Info"]["Version"]
+	game.Players.LocalPlayer.PlayerGui.LibraryGui.MainFrame.TextLabel.Text = name.." // "..1.00
 	
 	local UserInputService = game:GetService("UserInputService")
     local gui = Main.MainFrame
