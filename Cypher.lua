@@ -365,14 +365,23 @@ function json.decode(str)
   return res
 end
 
-if not isfile("cyphersettings.json") then
-	writefile("cyphersettings.json",json.encode(Library))
-	writefile("version.cyph", "1.00")
-else
-	local content = readfile("cyphersettings.json")
-	Library = json.decode(content)
-	local Version = readfile("version.cyph")
-	Library["Info"]["Version"] = Version
+local succ, err = pcall(function()
+	if not isfile("cyphersettings.json") then
+		writefile("cyphersettings.json",json.encode(Library))
+		if not isfile("version.cyph") then
+			writefile("version.cyph", "1.00")
+		else
+			local Version = readfile("version.cyph")
+			Library["Info"]["Version"] = Version
+		end
+	else
+		local content = readfile("cyphersettings.json")
+		Library = json.decode(content)
+	end
+end)
+
+if err then 
+	print(err)
 end
 
 function checkFunc ()
